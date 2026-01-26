@@ -1,99 +1,189 @@
+import { useState } from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
+import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
+import CardActions from "@mui/material/CardActions";
+import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
-
-const ExpandMore = styled((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-})(({ theme }) => ({
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-        duration: theme.transitions.duration.shortest,
-    }),
-    variants: [
-        {
-            props: ({ expand }) => !expand,
-            style: {
-                transform: "rotate(0deg)",
-            },
-        },
-        {
-            props: ({ expand }) => !!expand,
-            style: {
-                transform: "rotate(180deg)",
-            },
-        },
-    ],
-}));
+import Collapse from "@mui/material/Collapse";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { styled } from "@mui/material/styles";
+import CustomTooltip from "./tooltip";
 
 /**
  * CustomCard
  *
- * @param {string | ReactNode} header
- *  Small header text shown at the top of the card
+ * A fully customizable Material-UI Card component.
+ * All sections (header, media, content, actions, expandable content)
+ * are optional and configurable via props.
  *
- * @param {string | ReactNode} title
- *  Main heading of the card
+ * -------------------------
+ * HEADER PROPS
+ * -------------------------
  *
- * @param {string | ReactNode} subTitle
- *  Secondary text below the title
+ * @param {React.ReactNode} avatar
+ *  Element displayed on the left side of the card header.
+ *  Commonly used for Avatar, Icon, or Image.
  *
- * @param {string | ReactNode} content
- *  Main body content of the card
+ * @param {React.ReactNode} headerAction
+ *  Element displayed on the right side of the card header.
+ *  Usually wrapped inside an IconButton with CustomTooltip.
  *
- * @param {ReactNode} actions
- *  Elements to be rendered inside CardActions
+ * @param {string | React.ReactNode} title
+ *  Main title of the card.
+ *  Can be plain text or a Typography/custom React node.
+ *
+ * @param {string | React.ReactNode} subTitle
+ *  Secondary text displayed below the title.
+ *
+ * -------------------------
+ * MEDIA PROPS
+ * -------------------------
+ *
+ * @param {string} media
+ *  Image URL to be rendered inside CardMedia.
+ *  If not provided, media section is skipped.
+ *
+ * @param {number | string} mediaHeight
+ *  Height of the media section.
+ *  Accepts number (px) or CSS units.
+ *
+ * -------------------------
+ * CONTENT PROPS
+ * -------------------------
+ *
+ * @param {React.ReactNode} content
+ *  Main body content of the card.
+ *  Can contain text, JSX, forms, tables, etc.
+ *
+ * @param {React.ReactNode} expandContent
+ *  Content revealed when the card is expanded.
+ *  Expand icon is shown only if this prop is provided.
+ *
+ * -------------------------
+ * ACTION PROPS
+ * -------------------------
+ *
+ * @param {Array<{ icon: React.ReactNode, tooltip: string, onClick?: Function }>} actions
+ *  List of action icons rendered inside CardActions.
+ *  Each icon is automatically wrapped with CustomTooltip.
+ *
+ * -------------------------
+ * STYLE PROPS
+ * -------------------------
  *
  * @param {object} cardSx
- *  Custom sx styles for the Card component
+ *  Style overrides for the Card component.
  *
  * @param {object} contentSx
- *  Custom sx styles for the CardContent component
+ *  Style overrides for the CardContent component.
  *
- * @param {boolean} showActions
+ *  @param {boolean} showActions
  *  Controls visibility of CardActions
+ *
+ *
+ * -------------------------
+ * DEFAULT BEHAVIOR
+ * -------------------------
+ * - All sections are optional
+ * - Expand icon appears only if expandContent exists
+ * - Tooltips are handled internally
  */
+
+const ExpandMore = styled(IconButton, {
+    shouldForwardProp: (prop) => prop !== "expand",
+})(({ theme, expand }) => ({
+    marginLeft: "auto",
+    transform: expand ? "rotate(180deg)" : "rotate(0deg)",
+    transition: theme.transitions.create("transform", {
+        duration: theme.transitions.duration.shortest,
+    }),
+}));
+
 export default function CustomCard({
-    header = "Default Header",
+    avatar = null,
+    headerAction = null,
     title = "Default Title",
-    subTitle = "Default Subtitle",
-    content = "This is default card content, needs to be replaced.",
-    actions = null,
+    subTitle = "Default subtitle",
+    media = null,
+    mediaHeight = 194,
+    content = "This is default card content.",
+    expandContent = null,
+    actions = [],
     cardSx = {},
     contentSx = {},
     showActions = true,
 }) {
+    const [expanded, setExpanded] = useState(false);
+
     return (
-        <Card sx={{ ...cardSx }}>
+        <Card sx={{ maxWidth: 345, maxWidth: 275, ...cardSx }}>
+            {(title || subTitle || avatar || headerAction) && (
+                <CardHeader
+                    avatar={avatar}
+                    action={headerAction}
+                    title={title}
+                    subheader={subTitle}
+                />
+            )}
+
+            {media && (
+                <CardMedia
+                    component="img"
+                    height={mediaHeight}
+                    image={media}
+                    alt="card-media"
+                />
+            )}
+
             <CardContent sx={contentSx}>
-                {header && (
-                    <Typography
-                        gutterBottom
-                        sx={{ color: "text.secondary", fontSize: 14 }}
-                    >
-                        {header}
+                {typeof content === "string" ? (
+                    <Typography variant="body2" color="text.secondary">
+                        {content}
                     </Typography>
+                ) : (
+                    content
                 )}
-
-                {title && (
-                    <Typography variant="h5" component="div">
-                        {title}
-                    </Typography>
-                )}
-
-                {subTitle && (
-                    <Typography sx={{ color: "text.secondary", mb: 1.5 }}>
-                        {subTitle}
-                    </Typography>
-                )}
-
-                {content && <Typography variant="body2">{content}</Typography>}
             </CardContent>
 
-            {showActions && actions && <CardActions>{actions}</CardActions>}
+            {(actions.length > 0 || expandContent) && (
+                <CardActions showActions={showActions} disableSpacing>
+                    {actions.map((action, index) => (
+                        <CustomTooltip key={index} title={action.tooltip}>
+                            <IconButton
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    action.onClick?.();
+                                }}
+                            >
+                                {action.icon}
+                            </IconButton>
+                        </CustomTooltip>
+                    ))}
+
+                    {expandContent && (
+                        <CustomTooltip title={expanded ? "Collapse" : "Expand"}>
+                            <ExpandMore
+                                expand={expanded}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setExpanded((prev) => !prev);
+                                }}
+                                aria-expanded={expanded}
+                            >
+                                <ExpandMoreIcon />
+                            </ExpandMore>
+                        </CustomTooltip>
+                    )}
+                </CardActions>
+            )}
+
+            {expandContent && (
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>{expandContent}</CardContent>
+                </Collapse>
+            )}
         </Card>
     );
 }

@@ -24,7 +24,7 @@ const LightTooltip = styled(({ className, ...props }) => (
 
 /**
  * @param {title} tooltip text
- * @param {icon} icon inside IconButton
+ * @param {chidren} icon will be passed along with the function
  * @param {placement} tooltip placement, available options are "top-start", "top", "top-end", "left-start", "left", "left-end", "right-start", "right-end", "right", "bottom-start", "bottom", "bottom-end" with the default being top
  * @param {delay} delay in ms before tooltip opens (default 300ms)
  * @param {trigger} "hover" | "click"
@@ -33,7 +33,7 @@ const LightTooltip = styled(({ className, ...props }) => (
  */
 export default function CustomTooltip({
     title = "Delete",
-    icon = <DeleteIcon />,
+    children,
     placement = "top",
     delay = 300,
     trigger = "hover",
@@ -61,7 +61,7 @@ export default function CustomTooltip({
                 enterDelay={delay}
                 disableInteractive
             >
-                <IconButton>{icon}</IconButton>
+                <span>{children}</span>
             </LightTooltip>
         );
     }
