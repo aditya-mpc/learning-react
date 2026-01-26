@@ -84,6 +84,9 @@ import CardActionArea from "@mui/material/CardActionArea";
  *  Controls visibility of CardActions
  *  @param {Function} onCardClick
  *  If provided, the card becomes clickable using CardActionArea
+ *  @param {boolean} disabled
+ *  @param {number} elevation
+ *  @param {number} hoverElevation
  *
  * -------------------------
  * DEFAULT BEHAVIOR
@@ -117,13 +120,32 @@ export default function CustomCard({
     contentSx = {},
     showActions = true,
     onCardClick = null,
+    disabled = false,
+    elevation = 1,
+    hoverElevation = 6,
 }) {
     const [expanded, setExpanded] = useState(false);
-
+    const isClickable = Boolean(onCardClick) && !disabled;
     const CardWrapper = onCardClick ? CardActionArea : "div";
 
     return (
-        <Card sx={{ maxWidth: 345, maxWidth: 275, ...cardSx }}>
+        <Card
+            sx={{
+                maxWidth: 275,
+                maxHeight: 345,
+                cursor: isClickable && !disabled ? "pointer" : "default",
+                opacity: disabled ? 0.6 : 1,
+                pointerEvents: disabled ? "none" : "auto",
+                transition: "box-shadow 0.3s ease",
+                "&:hover": isClickable
+                    ? {
+                          boxShadow: (theme) => theme.shadows[hoverElevation],
+                      }
+                    : {},
+                ...cardSx,
+            }}
+            elevation={elevation}
+        >
             <CardWrapper onClick={onCardClick}>
                 {(title || subTitle || avatar || headerAction) && (
                     <CardHeader

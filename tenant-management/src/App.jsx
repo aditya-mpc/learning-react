@@ -55,7 +55,7 @@ function App() {
                 />
                 <IconButtons />
                 <Tooltip />
-                <CustomCard />
+                <CustomCard disabled="true" />
 
                 <CustomCard
                     title="Main Invoice Summary"
@@ -79,9 +79,10 @@ function App() {
                             GST included. Payment due in 7 days.
                         </Typography>
                     }
-                    cardSx={{ background: "#848484", color: "white" }}
+                    cardSx={{ background: "#1ed2f7", color: "black" }}
                     contentSx={{ background: "#0000f" }}
                     onCardClick={() => console.log("Card clicked")}
+                    hoverElevation={10}
                 />
 
                 <ToastBar
