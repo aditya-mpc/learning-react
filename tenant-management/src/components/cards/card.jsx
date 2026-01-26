@@ -9,7 +9,7 @@ import Collapse from "@mui/material/Collapse";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
-import CustomTooltip from "./tooltip";
+import CustomTooltip from "../tooltip";
 import CardActionArea from "@mui/material/CardActionArea";
 
 /**

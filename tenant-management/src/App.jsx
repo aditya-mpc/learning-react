@@ -2,10 +2,11 @@ import { useState } from "react";
 import "./App.css";
 import ToastBar from "./components/toast";
 import CustomButton from "./components/buttons/button";
+import ElevatedPaper from "./components/cards/paper";
 import SendIcon from "@mui/icons-material/Send";
 import IconButtons from "./components/buttons/icon-button";
 import Tooltip from "./components/tooltip";
-import CustomCard from "./components/card";
+import CustomCard from "./components/cards/card";
 import { Avatar, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -45,8 +46,9 @@ function App() {
 
     return (
         <>
-            <div className="card">
+            <div className="flex justify-content center gap-4">
                 <button onClick={handleClick}>count is {count}</button>
+                <br></br>
                 <CustomButton
                     button="Delete"
                     disabled="false"
@@ -84,6 +86,8 @@ function App() {
                     onCardClick={() => console.log("Card clicked")}
                     hoverElevation={10}
                 />
+
+                <ElevatedPaper />
 
                 <ToastBar
                     open={toast.open}
