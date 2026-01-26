@@ -81,6 +81,7 @@ function App() {
                     }
                     cardSx={{ background: "#848484", color: "white" }}
                     contentSx={{ background: "#0000f" }}
+                    onCardClick={() => console.log("Card clicked")}
                 />
 
                 <ToastBar

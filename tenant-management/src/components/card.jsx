@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
 import CustomTooltip from "./tooltip";
+import CardActionArea from "@mui/material/CardActionArea";
 
 /**
  * CustomCard
@@ -81,7 +82,8 @@ import CustomTooltip from "./tooltip";
  *
  *  @param {boolean} showActions
  *  Controls visibility of CardActions
- *
+ *  @param {Function} onCardClick
+ *  If provided, the card becomes clickable using CardActionArea
  *
  * -------------------------
  * DEFAULT BEHAVIOR
@@ -114,76 +116,83 @@ export default function CustomCard({
     cardSx = {},
     contentSx = {},
     showActions = true,
+    onCardClick = null,
 }) {
     const [expanded, setExpanded] = useState(false);
 
+    const CardWrapper = onCardClick ? CardActionArea : "div";
+
     return (
         <Card sx={{ maxWidth: 345, maxWidth: 275, ...cardSx }}>
-            {(title || subTitle || avatar || headerAction) && (
-                <CardHeader
-                    avatar={avatar}
-                    action={headerAction}
-                    title={title}
-                    subheader={subTitle}
-                />
-            )}
-
-            {media && (
-                <CardMedia
-                    component="img"
-                    height={mediaHeight}
-                    image={media}
-                    alt="card-media"
-                />
-            )}
-
-            <CardContent sx={contentSx}>
-                {typeof content === "string" ? (
-                    <Typography variant="body2" color="text.secondary">
-                        {content}
-                    </Typography>
-                ) : (
-                    content
+            <CardWrapper onClick={onCardClick}>
+                {(title || subTitle || avatar || headerAction) && (
+                    <CardHeader
+                        avatar={avatar}
+                        action={headerAction}
+                        title={title}
+                        subheader={subTitle}
+                    />
                 )}
-            </CardContent>
 
-            {(actions.length > 0 || expandContent) && (
-                <CardActions showActions={showActions} disableSpacing>
-                    {actions.map((action, index) => (
-                        <CustomTooltip key={index} title={action.tooltip}>
-                            <IconButton
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    action.onClick?.();
-                                }}
-                            >
-                                {action.icon}
-                            </IconButton>
-                        </CustomTooltip>
-                    ))}
+                {media && (
+                    <CardMedia
+                        component="img"
+                        height={mediaHeight}
+                        image={media}
+                        alt="card-media"
+                    />
+                )}
 
-                    {expandContent && (
-                        <CustomTooltip title={expanded ? "Collapse" : "Expand"}>
-                            <ExpandMore
-                                expand={expanded}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setExpanded((prev) => !prev);
-                                }}
-                                aria-expanded={expanded}
-                            >
-                                <ExpandMoreIcon />
-                            </ExpandMore>
-                        </CustomTooltip>
+                <CardContent sx={contentSx}>
+                    {typeof content === "string" ? (
+                        <Typography variant="body2" color="text.secondary">
+                            {content}
+                        </Typography>
+                    ) : (
+                        content
                     )}
-                </CardActions>
-            )}
+                </CardContent>
 
-            {expandContent && (
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <CardContent>{expandContent}</CardContent>
-                </Collapse>
-            )}
+                {(actions.length > 0 || expandContent) && (
+                    <CardActions showActions={showActions} disableSpacing>
+                        {actions.map((action, index) => (
+                            <CustomTooltip key={index} title={action.tooltip}>
+                                <IconButton
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        action.onClick?.();
+                                    }}
+                                >
+                                    {action.icon}
+                                </IconButton>
+                            </CustomTooltip>
+                        ))}
+
+                        {expandContent && (
+                            <CustomTooltip
+                                title={expanded ? "Collapse" : "Expand"}
+                            >
+                                <ExpandMore
+                                    expand={expanded}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setExpanded((prev) => !prev);
+                                    }}
+                                    aria-expanded={expanded}
+                                >
+                                    <ExpandMoreIcon />
+                                </ExpandMore>
+                            </CustomTooltip>
+                        )}
+                    </CardActions>
+                )}
+
+                {expandContent && (
+                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                        <CardContent>{expandContent}</CardContent>
+                    </Collapse>
+                )}
+            </CardWrapper>
         </Card>
     );
 }
