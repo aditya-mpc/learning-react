@@ -33,7 +33,6 @@ export default function CustomBox({
 
     const defaultStyles = {
         p: 2,
-        minWidth: 500,
         minHeight: 200,
         border: "1px dashed gray",
         borderRadius: 1,

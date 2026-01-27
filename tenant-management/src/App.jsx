@@ -47,7 +47,7 @@ function App() {
 
     return (
         <>
-            <div className="mx-auto max-w-large items-center gap-x-4 rounded-xl justify-content bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10 space-between">
+            <div>
                 <div className="mb-5">
                     <button onClick={handleClick}>count is {count}</button>
                 </div>
@@ -63,7 +63,7 @@ function App() {
                     <IconButtons />
                 </div>
                 <div className="mb-5">
-                    <CustomCard disabled="true" />
+                    <CustomCard />
                 </div>
                 <div className="mb-5">
                     <CustomCard

@@ -136,10 +136,11 @@ export default function CustomCard({
                 cursor: isClickable && !disabled ? "pointer" : "default",
                 opacity: disabled ? 0.6 : 1,
                 pointerEvents: disabled ? "none" : "auto",
-                transition: "box-shadow 0.3s ease",
+                transition: "box-shadow 0.3s ease, transform 0.3s ease",
                 "&:hover": isClickable
                     ? {
                           boxShadow: (theme) => theme.shadows[hoverElevation],
+                          transform: "translateY(-2px)",
                       }
                     : {},
                 ...cardSx,

@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
  * @param {variant} property to handle what type of button should be displayed with default being contained and options are {"text", "contained", "outlined"}
  * @param {startIcon} optional React element to display at the start of the button
  * @param {endIcon} optional React element to display at the end of the button
+ * @param {styles} optional parameter to overwrite CSS
  * @returns
  */
 export default function CustomButton({
@@ -16,12 +17,14 @@ export default function CustomButton({
     variant = "contained",
     startIcon = null,
     endIcon = null,
+    styles = {},
 }) {
     if (disabled === "true") disabled = true;
     else disabled = false;
 
     return (
         <Button
+            sx={{ ...styles }}
             variant={variant}
             size={size}
             disabled={disabled}
