@@ -7,6 +7,7 @@ import SendIcon from "@mui/icons-material/Send";
 import IconButtons from "./components/buttons/icon-button";
 import Tooltip from "./components/tooltip";
 import CustomCard from "./components/cards/card";
+import CustomBox from "./components/box";
 import { Avatar, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -46,48 +47,61 @@ function App() {
 
     return (
         <>
-            <div className="flex justify-content center gap-4">
-                <button onClick={handleClick}>count is {count}</button>
-                <br></br>
-                <CustomButton
-                    button="Delete"
-                    disabled="false"
-                    size="large"
-                    endIcon={<SendIcon />}
-                />
-                <IconButtons />
-                <Tooltip />
-                <CustomCard disabled="true" />
+            <div className="mx-auto max-w-large items-center gap-x-4 rounded-xl justify-content bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10 space-between">
+                <div className="mb-5">
+                    <button onClick={handleClick}>count is {count}</button>
+                </div>
+                <div className="mb-5">
+                    <CustomButton
+                        button="Delete"
+                        disabled="false"
+                        size="large"
+                        endIcon={<SendIcon />}
+                    />
+                </div>
+                <div className="mb-5">
+                    <IconButtons />
+                </div>
+                <div className="mb-5">
+                    <CustomCard disabled="true" />
+                </div>
+                <div className="mb-5">
+                    <CustomCard
+                        title="Main Invoice Summary"
+                        subTitle="January 2026"
+                        avatar={<Avatar sx={{ bgcolor: "black" }}>A</Avatar>}
+                        content="Total payable amount is ₹1200."
+                        actions={[
+                            {
+                                icon: <FavoriteIcon />,
+                                tooltip: "Delete Invoice",
+                                onClick: () => console.log("Delete clicked"),
+                            },
+                            {
+                                icon: <MoreVertIcon />,
+                                tooltip: "Edit Invoice",
+                                onClick: () => console.log("Edit clicked"),
+                            },
+                        ]}
+                        expandContent={
+                            <Typography>
+                                GST included. Payment due in 7 days.
+                            </Typography>
+                        }
+                        cardSx={{ background: "#1ed2f7", color: "black" }}
+                        contentSx={{ background: "#0000f" }}
+                        onCardClick={() => console.log("Card clicked")}
+                        hoverElevation={10}
+                    />
+                </div>
 
-                <CustomCard
-                    title="Main Invoice Summary"
-                    subTitle="January 2026"
-                    avatar={<Avatar sx={{ bgcolor: "black" }}>A</Avatar>}
-                    content="Total payable amount is ₹1200."
-                    actions={[
-                        {
-                            icon: <FavoriteIcon />,
-                            tooltip: "Delete Invoice",
-                            onClick: () => console.log("Delete clicked"),
-                        },
-                        {
-                            icon: <MoreVertIcon />,
-                            tooltip: "Edit Invoice",
-                            onClick: () => console.log("Edit clicked"),
-                        },
-                    ]}
-                    expandContent={
-                        <Typography>
-                            GST included. Payment due in 7 days.
-                        </Typography>
-                    }
-                    cardSx={{ background: "#1ed2f7", color: "black" }}
-                    contentSx={{ background: "#0000f" }}
-                    onCardClick={() => console.log("Card clicked")}
-                    hoverElevation={10}
-                />
+                <div className="mb-5">
+                    <CustomBox />
+                </div>
 
-                <ElevatedPaper />
+                <div className="mb-5">
+                    <ElevatedPaper />
+                </div>
 
                 <ToastBar
                     open={toast.open}
