@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Globe } from "@gravity-ui/icons";
+import { Globe, ChevronRight, TrashBin, Sphere } from "@gravity-ui/icons";
 import "./App.css";
-import CustomButton from "./components/button";
+import { CustomButton } from "./components/buttons/buttons";
 
 function App() {
     function handleClick() {
@@ -16,20 +16,38 @@ function App() {
                     count is {count}
                 </button>
             </div>
+            {/* Basic button */}
             <CustomButton
-                size="lg"
-                className="bg-purple-600 hover:bg-purple-700 text-white font-bold"
+                label="Save Changes"
                 variant="primary"
-            >
-                Primary Action
-            </CustomButton>
-
-            <CustomButton onClick={handleClick} variant="secondary">
-                <Globe size={16} />
-                Visit
-            </CustomButton>
-            <CustomButton variant="ghost">Ghost</CustomButton>
-            <CustomButton variant="danger">Delete</CustomButton>
+                onPress={() => console.log("Saved")}
+            />
+            {/* Loading button */}
+            <CustomButton
+                label="Uploading..."
+                isLoading={true}
+                icon={<Sphere size="sm" />}
+                variant="secondary"
+            />
+            {/* Disabled button */}
+            <CustomButton
+                label="Submit"
+                isDisabled={true}
+                variant="ghost"
+            />
+            {/* Icon only button */}
+            <CustomButton
+                icon={<TrashBin />}
+                iconOnly={true}
+                size="sm"
+                variant="danger"
+            />
+            {/* Right side icon button */}
+            <CustomButton
+                label="Next"
+                icon={<ChevronRight />}
+                iconPosition="end"
+            />
         </>
     );
 }
