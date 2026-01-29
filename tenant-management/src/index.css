@@ -1,75 +1,12 @@
-@reference "tailwindcss";
+/* ------------ Imports ------------ */
+@import "tailwindcss";
+@import "@heroui/styles";
 
-/* Root Variables (Design Tokens) */
+/* ------------ Root Font + Base Settings ------------ */
 :root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-
-    /* Dark Theme Tokens */
-    --dark-background-color: #2c2c2c;
-    --dark-surface-color: #353535;
-    --dark-primary-text-color: #e0e0e0;
-    --dark-secondary-text-color: #b0b0b0;
-    --dark-border-color: #444444;
-    --dark-accent-color: #888888;
-
-    --dark-primary-button-bg: #6366f1;
-    --dark-primary-button-text: #ffffff;
-    --dark-primary-button-hover: #4f46e5;
-    --dark-primary-button-active: #4338ca;
-
-    --dark-secondary-button-bg: #3f3f46;
-    --dark-secondary-button-text: #e5e7eb;
-    --dark-secondary-button-hover: #52525b;
-
-    --dark-outline-button-border: #6366f1;
-    --dark-outline-button-text: #6366f1;
-    --dark-outline-button-hover-bg: rgba(99, 102, 241, 0.15);
-
-    --dark-ghost-button-text: #e0e0e0;
-    --dark-ghost-button-hover-bg: rgba(255, 255, 255, 0.08);
-
-    --dark-button-disabled-bg: #2a2a2a;
-    --dark-button-disabled-text: #6b7280;
-    --dark-button-disabled-border: #3f3f46;
-
-    --dark-focus-ring-color: rgba(99, 102, 241, 0.45);
-
-    /* Light Theme Tokens */
-    --light-background-color: #fafafa;
-    --light-surface-color: #ffffff;
-    --light-secondary-background-color: #f1f5f9;
-
-    --light-primary-text-color: #1e293b;
-    --light-secondary-text-color: #64748b;
-    --light-muted-text-color: #94a3b8;
-
-    --light-border-color: #e2e8f0;
-
-    --light-primary-button-bg: #6366f1;
-    --light-primary-button-text: #ffffff;
-    --light-primary-button-hover: #4f46e5;
-
-    --light-secondary-button-bg: #eef2ff;
-    --light-secondary-button-text: #4338ca;
-    --light-secondary-button-hover: #e0e7ff;
-
-    --light-outline-button-border: #6366f1;
-    --light-outline-button-text: #6366f1;
-    --light-outline-button-hover-bg: rgba(99, 102, 241, 0.12);
-
-    --light-ghost-button-text: #1e293b;
-    --light-ghost-button-hover-bg: rgba(0, 0, 0, 0.05);
-
-    --light-button-disabled-bg: #f1f5f9;
-    --light-button-disabled-text: #94a3b8;
-    --light-button-disabled-border: #e2e8f0;
-
-    --light-focus-ring-color: rgba(99, 102, 241, 0.35);
-
-    --light-accent-color: #22c55e;
-
     color-scheme: light dark;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -77,213 +14,114 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Theme Mapping (ACTIVE TOKENS) */
-.light {
-    --bg: var(--light-background-color);
-    --surface: var(--light-surface-color);
-    --secondary-bg: var(--light-secondary-background-color);
+/* ------------ Light Theme Variables ------------ */
+.light,
+[data-theme="light"] {
+    --background: #fafafa;
+    --foreground: #1e293b;
+    --surface: #ffffff;
 
-    --text-primary: var(--light-primary-text-color);
-    --text-secondary: var(--light-secondary-text-color);
-    --text-muted: var(--light-muted-text-color);
+    --accent: #22c55e;
+    --border: #e2e8f0;
 
-    --border: var(--light-border-color);
+    /* Buttons */
+    --primary: #6366f1;
+    --primary-foreground: #ffffff;
+    --primary-hover: #4f46e5;
+    --primary-active: #4338ca;
 
-    --btn-primary-bg: var(--light-primary-button-bg);
-    --btn-primary-text: var(--light-primary-button-text);
-    --btn-primary-hover: var(--light-primary-button-hover);
+    --secondary: #eef2ff;
+    --secondary-foreground: #4338ca;
+    --secondary-hover: #e0e7ff;
 
-    --btn-secondary-bg: var(--light-secondary-button-bg);
-    --btn-secondary-text: var(--light-secondary-button-text);
-    --btn-secondary-hover: var(--light-secondary-button-hover);
+    --outline: #6366f1;
+    --outline-foreground: #6366f1;
+    --outline-hover-bg: rgba(99, 102, 241, 0.12);
 
-    --btn-outline-border: var(--light-outline-button-border);
-    --btn-outline-text: var(--light-outline-button-text);
-    --btn-outline-hover-bg: var(--light-outline-button-hover-bg);
+    --ghost-foreground: #1e293b;
+    --ghost-hover-bg: rgba(0, 0, 0, 0.05);
 
-    --btn-ghost-text: var(--light-ghost-button-text);
-    --btn-ghost-hover-bg: var(--light-ghost-button-hover-bg);
+    --disabled-bg: #f1f5f9;
+    --disabled-foreground: #94a3b8;
+    --disabled-border: #e2e8f0;
 
-    --btn-disabled-bg: var(--light-button-disabled-bg);
-    --btn-disabled-text: var(--light-button-disabled-text);
-    --btn-disabled-border: var(--light-button-disabled-border);
-
-    --focus-ring: var(--light-focus-ring-color);
-
-    --accent: var(--light-accent-color);
+    --focus: rgba(99, 102, 241, 0.35);
 }
 
-/* Dark */
-.dark {
-    --bg: var(--dark-background-color);
-    --surface: var(--dark-surface-color);
-    --secondary-bg: var(--dark-surface-color);
+/* ------------ Dark Theme Variables ------------ */
+.dark,
+[data-theme="dark"] {
+    --background: #2c2c2c;
+    --foreground: #e0e0e0;
+    --surface: #353535;
 
-    --text-primary: var(--dark-primary-text-color);
-    --text-secondary: var(--dark-secondary-text-color);
+    --accent: #888888;
+    --border: #444444;
 
-    --border: var(--dark-border-color);
+    /* Buttons */
+    --primary: #6366f1;
+    --primary-foreground: #ffffff;
+    --primary-hover: #4f46e5;
+    --primary-active: #4338ca;
 
-    --btn-primary-bg: var(--dark-primary-button-bg);
-    --btn-primary-text: var(--dark-primary-button-text);
-    --btn-primary-hover: var(--dark-primary-button-hover);
-    --btn-primary-active: var(--dark-primary-button-active);
+    --secondary: #3f3f46;
+    --secondary-foreground: #e5e7eb;
+    --secondary-hover: #52525b;
 
-    --btn-secondary-bg: var(--dark-secondary-button-bg);
-    --btn-secondary-text: var(--dark-secondary-button-text);
-    --btn-secondary-hover: var(--dark-secondary-button-hover);
+    --outline: #6366f1;
+    --outline-foreground: #6366f1;
+    --outline-hover-bg: rgba(99, 102, 241, 0.15);
 
-    --btn-outline-border: var(--dark-outline-button-border);
-    --btn-outline-text: var(--dark-outline-button-text);
-    --btn-outline-hover-bg: var(--dark-outline-button-hover-bg);
+    --ghost-foreground: #e0e0e0;
+    --ghost-hover-bg: rgba(255, 255, 255, 0.08);
 
-    --btn-ghost-text: var(--dark-ghost-button-text);
-    --btn-ghost-hover-bg: var(--dark-ghost-button-hover-bg);
+    --disabled-bg: #2a2a2a;
+    --disabled-foreground: #6b7280;
+    --disabled-border: #3f3f46;
 
-    --btn-disabled-bg: var(--dark-button-disabled-bg);
-    --btn-disabled-text: var(--dark-button-disabled-text);
-    --btn-disabled-border: var(--dark-button-disabled-border);
-
-    --focus-ring: var(--dark-focus-ring-color);
+    --focus: rgba(99, 102, 241, 0.45);
 }
 
-/* Global Elements */
-/* body {
-    margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
+/* ------------ Expose Vars for Tailwind Utilities ------------ */
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-surface: var(--surface);
+    --color-border: var(--border);
 
-    background-color: var(--bg);
-    color: var(--text-primary);
+    --color-accent: var(--accent);
+
+    /* Buttons */
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary-hover: var(--primary-hover);
+    --color-primary-active: var(--primary-active);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary-hover: var(--secondary-hover);
+
+    --color-outline: var(--outline);
+    --color-outline-foreground: var(--outline-foreground);
+    --color-outline-hover-bg: var(--outline-hover-bg);
+
+    --color-ghost-foreground: var(--ghost-foreground);
+    --color-ghost-hover-bg: var(--ghost-hover-bg);
+
+    --color-disabled-bg: var(--disabled-bg);
+    --color-disabled-foreground: var(--disabled-foreground);
+    --color-disabled-border: var(--disabled-border);
+
+    --color-focus: var(--focus);
 }
 
-a {
-    font-weight: 500;
-    color: var(--btn-primary-bg);
-    text-decoration: inherit;
-}
-
-a:hover {
-    color: var(--btn-primary-hover);
-}
-
-h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
-    color: var(--text-primary);
-} */
-
-/* Base Button */
-.light .custom-hero-button {
-    @apply border font-medium transition-all ease-in-out duration-150;
-    background-color: var(--btn-primary-bg);
-    color: var(--text-primary);
-    border-color: var(--border);
-}
-
-.dark .custom-hero-button {
-    background-color: var(--btn-primary-bg);
-}
-
-.custom-hero-button:hover {
-    background-color: var(--secondary-bg);
-}
-
-.custom-hero-button:active {
-    transform: scale(0.97);
-}
-
-/* Button Variants  */
-/* Primary */
-.btn-variant-primary {
-    background-color: var(--btn-primary-bg);
-    color: var(--btn-primary-text);
-    border-color: transparent;
-}
-
-.btn-variant-primary:hover {
-    background-color: var(--btn-primary-hover);
-}
-
-.dark .btn-variant-primary:active {
-    background-color: var(--btn-primary-active);
-}
-
-/* Secondary */
-.btn-variant-secondary {
-    background-color: var(--btn-secondary-bg);
-    color: var(--btn-secondary-text);
-    border-color: var(--border);
-}
-
-.btn-variant-secondary:hover {
-    background-color: var(--btn-secondary-hover, var(--secondary-bg));
-}
-
-/* Outline / Tertiary */
-.btn-variant-tertiary {
-    background-color: transparent;
-    color: var(--btn-outline-text);
-    border-color: var(--btn-outline-border);
-}
-
-.btn-variant-tertiary:hover {
-    background-color: var(--btn-outline-hover-bg);
-}
-
-/* Ghost */
-.btn-variant-ghost {
-    background-color: transparent;
-    color: var(--btn-ghost-text);
-    border-color: transparent;
-}
-
-.btn-variant-ghost:hover {
-    background-color: var(--btn-ghost-hover-bg);
-}
-
-/* Danger (intentional fixed semantic color) */
-/* .btn-variant-danger {
-    background-color: #dc2626;
-    color: #ffffff;
-    border-color: transparent;
-} */
-
-.btn-variant-danger:hover {
-    background-color: #b91c1c;
-}
-
-/* States */
-
-.custom-hero-button[data-disabled="true"],
-.custom-hero-button:disabled {
-    background-color: var(--btn-disabled-bg);
-    color: var(--btn-disabled-text);
-    border-color: var(--btn-disabled-border);
-    cursor: not-allowed;
-    opacity: 0.8;
-}
-
-.custom-hero-button[data-pending="true"] {
-    cursor: progress;
-    opacity: 0.9;
-}
-
-/* Icon Buttons */
-.custom-hero-button.custom-icon-only {
-    @apply p-2 rounded-full;
-}
-
-.custom-hero-button .button-icon {
-    @apply inline-flex items-center justify-center;
-}
-
-.custom-hero-button .icon-start {
-    @apply mr-2;
-}
-
-.custom-hero-button .icon-end {
-    @apply ml-2;
+/* ------------ Tailwind Reset & Base Overrides ------------ */
+@layer base {
+    html,
+    body {
+        min-height: 100%;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
 }

@@ -1,13 +1,49 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>tenant-management</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="en" class="light" data-theme="light" id="html-root">
+    <head>
+        <meta charset="UTF-8" />
+
+        <!-- Auto set theme from system -->
+        <script>
+            (function () {
+                const html = document.documentElement;
+                const isDark = window.matchMedia(
+                    "(prefers-color-scheme: dark)",
+                ).matches;
+
+                // Set class and data-theme based on system preference
+                if (isDark) {
+                    html.classList.remove("light");
+                    html.classList.add("dark");
+                    html.setAttribute("data-theme", "dark");
+                } else {
+                    html.classList.remove("dark");
+                    html.classList.add("light");
+                    html.setAttribute("data-theme", "light");
+                }
+
+                // Listen for system theme changes
+                window
+                    .matchMedia("(prefers-color-scheme: dark)")
+                    .addEventListener("change", (e) => {
+                        if (e.matches) {
+                            html.classList.replace("light", "dark");
+                            html.setAttribute("data-theme", "dark");
+                        } else {
+                            html.classList.replace("dark", "light");
+                            html.setAttribute("data-theme", "light");
+                        }
+                    });
+            })();
+        </script>
+
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>tenant-management</title>
+    </head>
+
+    <body>
+        <div id="root"></div>
+        <script type="module" src="/src/main.jsx"></script>
+    </body>
 </html>
