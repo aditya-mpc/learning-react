@@ -24,11 +24,31 @@
     --accent: #22c55e;
     --border: #e2e8f0;
 
-    /* Buttons */
-    --primary: #6366f1;
-    --primary-foreground: #ffffff;
+    /* Primary Button */
+    --primary: #6366f1; /* existing: nice contrast with white background */
+    --primary-foreground: #ffffff; /* matches primary text-color contrast */
     --primary-hover: #4f46e5;
     --primary-active: #4338ca;
+
+    /* Secondary Button */
+    --secondary: #e0e7ff; /* light tint of primary */
+    --secondary-foreground: #4338ca; /* uses a darker primary for text */
+    --secondary-hover: #c7d2fe; /* slightly darker than secondary */
+
+    /* Tertiary Button */
+    --tertiary: #ffffff; /* match background for ghosty feel */
+    --tertiary-foreground: #333333; /* tertiary text color */
+    --tertiary-hover: #f3f4f6; /* subtle hover background */
+
+    /* Ghost Button */
+    --ghost-foreground: #222222; /* primary text color */
+    --ghost-hover-bg: rgba(0, 0, 0, 0.05); /* subtle hover */
+
+    /* Danger Button */
+    --danger: #cc0000; /* same as warning-text-color */
+    --danger-foreground: #ffffff;
+    --danger-hover: #b20000; /* slightly darker red */
+    --danger-active: #990000; /* active state */
 
     --secondary: #eef2ff;
     --secondary-foreground: #4338ca;
@@ -63,11 +83,31 @@
     --accent: #888888;
     --border: #444444;
 
-    /* Buttons */
-    --primary: #6366f1;
-    --primary-foreground: #ffffff;
+    /* Primary Button */
+    --primary: #6366f1; /* same as light theme, still readable */
+    --primary-foreground: #ffffff; /* stands out on dark surface */
     --primary-hover: #4f46e5;
     --primary-active: #4338ca;
+
+    /* Secondary Button */
+    --secondary: #52525b; /* medium-dark, visible on dark bg */
+    --secondary-foreground: #e5e7eb; /* secondary text color */
+    --secondary-hover: #636369; /* slightly lighter for hover */
+
+    /* Tertiary Button */
+    --tertiary: #353535; /* surface color */
+    --tertiary-foreground: #dfdfdf; /* primary text color */
+    --tertiary-hover: #4c4c4c; /* hover slightly lighter */
+
+    /* Ghost Button */
+    --ghost-foreground: #dfdfdf; /* primary text color */
+    --ghost-hover-bg: rgba(255, 255, 255, 0.08); /* subtle highlight */
+
+    /* Danger Button */
+    --danger: #cc0000; /* same warning color */
+    --danger-foreground: #ffffff;
+    --danger-hover: #b20000;
+    --danger-active: #990000;
 
     --secondary: #3f3f46;
     --secondary-foreground: #e5e7eb;
