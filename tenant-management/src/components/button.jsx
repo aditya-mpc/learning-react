@@ -31,8 +31,7 @@ export function CustomButton({
     onPress,
 }) {
     /**
-     * Map HeroUI variant to your own CSS class wrapper.
-     * This lets you define styles specifically for each type.
+     * Mapping button variants to our own CSS class which lets us define styles specifically for each type.
      */
     const variantClass = {
         primary: "btn-variant-primary",

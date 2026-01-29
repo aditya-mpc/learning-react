@@ -53,6 +53,20 @@
 
     --light-secondary-button-bg: #eef2ff;
     --light-secondary-button-text: #4338ca;
+    --light-secondary-button-hover: #e0e7ff;
+
+    --light-outline-button-border: #6366f1;
+    --light-outline-button-text: #6366f1;
+    --light-outline-button-hover-bg: rgba(99, 102, 241, 0.12);
+
+    --light-ghost-button-text: #1e293b;
+    --light-ghost-button-hover-bg: rgba(0, 0, 0, 0.05);
+
+    --light-button-disabled-bg: #f1f5f9;
+    --light-button-disabled-text: #94a3b8;
+    --light-button-disabled-border: #e2e8f0;
+
+    --light-focus-ring-color: rgba(99, 102, 241, 0.35);
 
     --light-accent-color: #22c55e;
 
@@ -81,6 +95,20 @@
 
     --btn-secondary-bg: var(--light-secondary-button-bg);
     --btn-secondary-text: var(--light-secondary-button-text);
+    --btn-secondary-hover: var(--light-secondary-button-hover);
+
+    --btn-outline-border: var(--light-outline-button-border);
+    --btn-outline-text: var(--light-outline-button-text);
+    --btn-outline-hover-bg: var(--light-outline-button-hover-bg);
+
+    --btn-ghost-text: var(--light-ghost-button-text);
+    --btn-ghost-hover-bg: var(--light-ghost-button-hover-bg);
+
+    --btn-disabled-bg: var(--light-button-disabled-bg);
+    --btn-disabled-text: var(--light-button-disabled-text);
+    --btn-disabled-border: var(--light-button-disabled-border);
+
+    --focus-ring: var(--light-focus-ring-color);
 
     --accent: var(--light-accent-color);
 }
@@ -89,6 +117,7 @@
 .dark {
     --bg: var(--dark-background-color);
     --surface: var(--dark-surface-color);
+    --secondary-bg: var(--dark-surface-color);
 
     --text-primary: var(--dark-primary-text-color);
     --text-secondary: var(--dark-secondary-text-color);
@@ -119,7 +148,7 @@
 }
 
 /* Global Elements */
-body {
+/* body {
     margin: 0;
     display: flex;
     place-items: center;
@@ -144,14 +173,18 @@ h1 {
     font-size: 3.2em;
     line-height: 1.1;
     color: var(--text-primary);
-}
+} */
 
 /* Base Button */
-.custom-hero-button {
+.light .custom-hero-button {
     @apply border font-medium transition-all ease-in-out duration-150;
-    background-color: var(--surface);
+    background-color: var(--btn-primary-bg);
     color: var(--text-primary);
     border-color: var(--border);
+}
+
+.dark .custom-hero-button {
+    background-color: var(--btn-primary-bg);
 }
 
 .custom-hero-button:hover {
