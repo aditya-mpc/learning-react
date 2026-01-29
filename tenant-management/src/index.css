@@ -1,68 +1,155 @@
+@reference "tailwindcss";
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+    color: #535bf2;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+    font-size: 3.2em;
+    line-height: 1.1;
 }
 
-/* button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Custom Button Styles for Light Mode */
+/* Base styles for all custom buttons */
+.custom-hero-button {
+    @apply border font-medium transition-all ease-in-out duration-150;
+    background-color: #ffffff;
+    color: #111827;
+    border: 1px solid #d1d5db;
 }
-button:hover {
-  border-color: #646cff;
+
+.btn-variant-primary {
+    @apply bg-blue-600 text-white border-transparent hover:bg-blue-700;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
+
+.btn-variant-secondary {
+    @apply bg-gray-100 text-gray-800 border-gray-300 hover:bg-gray-200;
+}
+
+.btn-variant-tertiary {
+    @apply bg-transparent text-gray-700 border-transparent hover:bg-gray-100;
+}
+
+.btn-variant-ghost {
+    @apply bg-transparent text-gray-700 border-transparent hover:bg-gray-100;
+}
+
+.btn-variant-danger {
+    @apply bg-red-600 text-white border-transparent hover:bg-red-700;
+}
+
+.dark .btn-variant-primary {
+    @apply bg-blue-500 text-white hover:bg-blue-600;
+}
+
+.dark .btn-variant-danger {
+    @apply bg-red-500 text-white hover:bg-red-600;
+}
+
+/* Light mode hover state */
+.custom-hero-button:hover {
+    @apply bg-gray-100;
+    border-color: #9ca3af;
+}
+
+/* Pressed / active state in light mode */
+.custom-hero-button:active {
+    @apply bg-gray-200;
+    transform: scale(0.97);
+}
+
+/* Disabled state */
+.custom-hero-button[data-disabled="true"],
+.custom-hero-button:disabled {
+    @apply bg-gray-100 text-gray-400 border-gray-300 cursor-not-allowed opacity-80;
+}
+
+/* Loading (pending) state */
+.custom-hero-button[data-pending="true"] {
+    @apply cursor-progress opacity-90;
+}
+
+/* Icon-only button specific */
+.custom-hero-button.custom-icon-only {
+    @apply p-2 rounded-full;
+}
+
+/* Icons with text spacing */
+.custom-hero-button .button-icon {
+    @apply inline-flex items-center justify-center;
+}
+
+.custom-hero-button .icon-start {
+    @apply mr-2;
+}
+
+.custom-hero-button .icon-end {
+    @apply ml-2;
+}
+
+/* Dark Mode Overrides*/
+.dark .custom-hero-button {
+    background-color: #1f2937;
+    color: #f9fafb;
+    border: 1px solid #374151;
+}
+
+.dark .custom-hero-button:hover {
+    @apply bg-gray-700;
+    border-color: #4b5563;
+}
+
+.dark .custom-hero-button:active {
+    @apply bg-gray-800;
+    transform: scale(0.97);
+}
+
+.dark .custom-hero-button[data-disabled="true"],
+.dark .custom-hero-button:disabled {
+    @apply bg-gray-800 text-gray-500 border-gray-600 cursor-not-allowed opacity-70;
+}
+
+.dark .custom-hero-button[data-pending="true"] {
+    @apply cursor-progress opacity-85;
+}
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+    :root {
+        color: #213547;
+        background-color: #4d9db3;
+    }
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f9f9f9;
+    }
 }

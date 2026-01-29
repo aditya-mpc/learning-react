@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Globe, ChevronRight, TrashBin, Sphere } from "@gravity-ui/icons";
 import "./App.css";
-import { CustomButton } from "./components/buttons/buttons";
+import { CustomButton } from "./components/button";
+import { ToolTip } from "./components/tooltip";
 
 function App() {
     function handleClick() {
@@ -30,11 +31,7 @@ function App() {
                 variant="secondary"
             />
             {/* Disabled button */}
-            <CustomButton
-                label="Submit"
-                isDisabled={true}
-                variant="ghost"
-            />
+            <CustomButton label="Submit" isDisabled={true} variant="ghost" />
             {/* Icon only button */}
             <CustomButton
                 icon={<TrashBin />}
@@ -48,6 +45,9 @@ function App() {
                 icon={<ChevronRight />}
                 iconPosition="end"
             />
+
+            {/* Tooltip Example */}
+            <ToolTip></ToolTip>
         </>
     );
 }
