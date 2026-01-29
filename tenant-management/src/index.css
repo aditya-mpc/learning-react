@@ -41,11 +41,16 @@
     --ghost-foreground: #1e293b;
     --ghost-hover-bg: rgba(0, 0, 0, 0.05);
 
-    --disabled-bg: #f1f5f9;
-    --disabled-foreground: #94a3b8;
+    --disabled-bg: #5c5d87;
+    --disabled-foreground: #000000;
     --disabled-border: #e2e8f0;
 
     --focus: rgba(99, 102, 241, 0.35);
+
+    --primary-text-color: #222222;
+    --secondary-text-color: #757575;
+    --tertiary-text-color: #333333;
+    --warning-text-color: #cc0000;
 }
 
 /* ------------ Dark Theme Variables ------------ */
@@ -75,11 +80,16 @@
     --ghost-foreground: #e0e0e0;
     --ghost-hover-bg: rgba(255, 255, 255, 0.08);
 
-    --disabled-bg: #2a2a2a;
-    --disabled-foreground: #6b7280;
+    --disabled-bg: #5c5d87;
+    --disabled-foreground: #ffffff;
     --disabled-border: #3f3f46;
 
     --focus: rgba(99, 102, 241, 0.45);
+
+    --primary-text-color: #dfdfdf;
+    --secondary-text-color: #8f8f8f;
+    --tertiary-text-color: #4e4e4e;
+    --warning-text-color: #cc0000;
 }
 
 /* ------------ Expose Vars for Tailwind Utilities ------------ */
@@ -126,7 +136,7 @@
     border-radius: 0.5rem;
 
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1;
     border-radius: 14px;
 
@@ -166,12 +176,12 @@
 /* Disabled */
 .custom-hero-button:not(.danger):not(.danger-soft):disabled {
     background-color: var(--disabled-bg);
-    color: var(--disabled-foreground);
+    color: var(--tertiary-text-color);
     border-color: var(--disabled-border);
-
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
+    font-weight: 500;
 }
 
 /* VARIANTS */
