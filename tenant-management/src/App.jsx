@@ -23,6 +23,12 @@ function App() {
                 variant="primary"
                 onPress={() => console.log("Saved")}
             />
+            <CustomButton
+                label="Save Changes"
+                variant="primary"
+                isDisabled={true}
+                onPress={() => console.log("Saved")}
+            />
             {/* Loading button */}
             <CustomButton
                 label="Uploading..."

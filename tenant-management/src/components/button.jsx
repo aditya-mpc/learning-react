@@ -30,25 +30,23 @@ export function CustomButton({
     fullWidth = false,
     onPress,
 }) {
-    /**
-     * Mapping button variants to our own CSS class which lets us define styles specifically for each type.
-     */
-    const variantClass = {
-        primary: "btn-variant-primary",
-        secondary: "btn-variant-secondary",
-        tertiary: "btn-variant-tertiary",
-        ghost: "btn-variant-ghost",
-        danger: "btn-variant-danger",
-    }[variant];
+    const isDanger = variant === "danger" || variant === "danger-soft";
+
+    const variantClassMap = {
+        primary: "custom-hero-button--primary",
+        secondary: "custom-hero-button--secondary",
+        tertiary: "custom-hero-button--tertiary",
+        ghost: "custom-hero-button--ghost",
+    };
 
     return (
         <Button
             className={`
-        custom-hero-button
-        ${variantClass}
-        ${iconOnly ? "custom-icon-only" : ""}
-        ${fullWidth ? "w-full" : "inline-flex"}
-      `}
+                ${!isDanger ? "custom-hero-button" : ""}
+                ${!isDanger ? (variantClassMap[variant] ?? "") : ""}
+                ${iconOnly ? "custom-icon-only" : ""}
+                ${fullWidth ? "w-full" : "inline-flex"}
+            `}
             variant={variant}
             size={size}
             fullWidth={fullWidth}

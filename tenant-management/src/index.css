@@ -115,6 +115,127 @@
     --color-focus: var(--focus);
 }
 
+/* BASE BUTTON */
+.custom-hero-button:not(.danger):not(.danger-soft) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+    border-radius: 14px;
+
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    border: 1px solid transparent;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        background-color 150ms ease,
+        color 150ms ease,
+        border-color 150ms ease,
+        box-shadow 150ms ease,
+        transform 80ms ease;
+}
+
+/* STATES */
+/* Hover */
+.custom-hero-button:not(.danger):not(.danger-soft):hover:not(:disabled) {
+    background-color: var(--primary-hover);
+}
+
+/* Active / Pressed */
+.custom-hero-button:not(.danger):not(.danger-soft):active:not(:disabled) {
+    background-color: var(--primary-active);
+    transform: translateY(1px);
+}
+
+/* Focus (Keyboard only) */
+.custom-hero-button:not(.danger):not(.danger-soft):focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--focus);
+}
+
+/* Disabled */
+.custom-hero-button:not(.danger):not(.danger-soft):disabled {
+    background-color: var(--disabled-bg);
+    color: var(--disabled-foreground);
+    border-color: var(--disabled-border);
+
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* VARIANTS */
+
+/* ------------ Secondary ------------ */
+.custom-hero-button--secondary {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+}
+
+.custom-hero-button--secondary:hover:not(:disabled) {
+    background-color: var(--secondary-hover);
+}
+
+.custom-hero-button--secondary:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+/* ------------ Outline ------------ */
+.custom-hero-button--outline {
+    background-color: transparent;
+    color: var(--outline-foreground);
+    border-color: var(--outline);
+}
+
+.custom-hero-button--outline:hover:not(:disabled) {
+    background-color: var(--outline-hover-bg);
+}
+
+.custom-hero-button--outline:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+/* Ghost */
+.custom-hero-button--ghost {
+    background-color: transparent;
+    color: var(--ghost-foreground);
+    border-color: transparent;
+}
+
+.custom-hero-button--ghost:hover:not(:disabled) {
+    background-color: var(--ghost-hover-bg);
+}
+
+.custom-hero-button--ghost:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+/* ICON-ONLY */
+.custom-hero-button.custom-icon-only {
+    padding: 0.5rem;
+}
+
+/* INTERNAL ELEMENTS */
+.custom-hero-button .button-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-hero-button .button-label {
+    white-space: nowrap;
+}
+
 /* ------------ Tailwind Reset & Base Overrides ------------ */
 @layer base {
     html,
