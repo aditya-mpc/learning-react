@@ -31,9 +31,9 @@
     --primary-active: #4338ca;
 
     /* Secondary Button */
-    --secondary: #e0e7ff; /* light tint of primary */
+    /* light tint of primary */
     --secondary-foreground: #4338ca; /* uses a darker primary for text */
-    --secondary-hover: #c7d2fe; /* slightly darker than secondary */
+    /* slightly darker than secondary */
 
     /* Tertiary Button */
     --tertiary: #ffffff; /* match background for ghosty feel */
@@ -41,7 +41,7 @@
     --tertiary-hover: #f3f4f6; /* subtle hover background */
 
     /* Ghost Button */
-    --ghost-foreground: #222222; /* primary text color */
+    /* primary text color */
     --ghost-hover-bg: rgba(0, 0, 0, 0.05); /* subtle hover */
 
     /* Danger Button */
@@ -51,7 +51,6 @@
     --danger-active: #990000; /* active state */
 
     --secondary: #eef2ff;
-    --secondary-foreground: #4338ca;
     --secondary-hover: #e0e7ff;
 
     --outline: #6366f1;
@@ -59,8 +58,6 @@
     --outline-hover-bg: rgba(99, 102, 241, 0.12);
 
     --ghost-foreground: #1e293b;
-    --ghost-hover-bg: rgba(0, 0, 0, 0.05);
-
     --disabled-bg: #5c5d87;
     --disabled-foreground: #000000;
     --disabled-border: #e2e8f0;
@@ -90,9 +87,9 @@
     --primary-active: #4338ca;
 
     /* Secondary Button */
-    --secondary: #52525b; /* medium-dark, visible on dark bg */
+    /* medium-dark, visible on dark bg */
     --secondary-foreground: #e5e7eb; /* secondary text color */
-    --secondary-hover: #636369; /* slightly lighter for hover */
+    /* slightly lighter for hover */
 
     /* Tertiary Button */
     --tertiary: #353535; /* surface color */
@@ -100,7 +97,7 @@
     --tertiary-hover: #4c4c4c; /* hover slightly lighter */
 
     /* Ghost Button */
-    --ghost-foreground: #dfdfdf; /* primary text color */
+    /* primary text color */
     --ghost-hover-bg: rgba(255, 255, 255, 0.08); /* subtle highlight */
 
     /* Danger Button */
@@ -110,7 +107,6 @@
     --danger-active: #990000;
 
     --secondary: #3f3f46;
-    --secondary-foreground: #e5e7eb;
     --secondary-hover: #52525b;
 
     --outline: #6366f1;
@@ -118,8 +114,6 @@
     --outline-hover-bg: rgba(99, 102, 241, 0.15);
 
     --ghost-foreground: #e0e0e0;
-    --ghost-hover-bg: rgba(255, 255, 255, 0.08);
-
     --disabled-bg: #5c5d87;
     --disabled-foreground: #ffffff;
     --disabled-border: #3f3f46;
@@ -173,12 +167,11 @@
     gap: 0.5rem;
 
     padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
 
     font-size: 0.875rem;
     font-weight: 600;
     line-height: 1;
-    border-radius: 14px;
 
     background-color: var(--primary);
     color: var(--primary-foreground);
@@ -284,6 +277,17 @@
 
 .custom-hero-button .button-label {
     white-space: nowrap;
+}
+
+/* Tooltip */
+@layer components {
+    .tooltip {
+        @apply rounded-xl shadow-lg;
+    }
+
+    .tooltip__trigger {
+        @apply cursor-help;
+    }
 }
 
 /* ------------ Tailwind Reset & Base Overrides ------------ */

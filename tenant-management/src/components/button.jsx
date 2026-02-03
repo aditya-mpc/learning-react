@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { Button } from "@heroui/react";
+import { Button, Tooltip } from "@heroui/react";
 
 /**
- * CustomButton
+ * CustomButtonWithTooltip
  *
  * Props:
  * @param {string} label
@@ -17,6 +17,9 @@ import { Button } from "@heroui/react";
  * @param {"sm" | "md" | "lg"} size
  * @param {boolean} fullWidth
  * @param {function} onPress
+ * @param {React.ReactNode} tooltipContent - content to display in tooltip
+ * @param {number} tooltipEnterDelay - milliseconds before tooltip shows
+ * @param {number} tooltipExitDelay - milliseconds before tooltip hides
  */
 export function CustomButton({
     label,
@@ -29,6 +32,9 @@ export function CustomButton({
     size = "md",
     fullWidth = false,
     onPress,
+    tooltipContent = null,
+    tooltipEnterDelay = 0,
+    tooltipExitDelay = 0,
 }) {
     const isDanger = variant === "danger" || variant === "danger-soft";
 
@@ -39,7 +45,7 @@ export function CustomButton({
         ghost: "custom-hero-button--ghost",
     };
 
-    return (
+    const buttonElement = (
         <Button
             className={`
                 ${!isDanger ? "custom-hero-button" : ""}
@@ -68,4 +74,19 @@ export function CustomButton({
             {iconOnly && icon && <span className="button-icon">{icon}</span>}
         </Button>
     );
+
+    // If tooltipContent is provided and button is iconOnly, wrap in Tooltip
+    if (iconOnly && tooltipContent) {
+        return (
+            <Tooltip delay={tooltipEnterDelay}>
+                {buttonElement}
+                <Tooltip.Content delay={tooltipExitDelay}>
+                    {tooltipContent}
+                </Tooltip.Content>
+            </Tooltip>
+        );
+    }
+
+    // Otherwise just render the button
+    return buttonElement;
 }

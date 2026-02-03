@@ -3,6 +3,7 @@ import { Globe, ChevronRight, TrashBin, Sphere } from "@gravity-ui/icons";
 import "./App.css";
 import { CustomButton } from "./components/button";
 import { ToolTip } from "./components/tooltip";
+import { CircleInfo } from "@gravity-ui/icons";
 
 function App() {
     function handleClick() {
@@ -22,6 +23,16 @@ function App() {
                 label="Save Changes"
                 variant="primary"
                 onPress={() => console.log("Saved")}
+            />
+            {/* Custom Button with tooltip */}
+            <CustomButton
+                icon={<CircleInfo />}
+                iconOnly
+                variant="tertiary"
+                className="{}"
+                tooltipContent={<p>More information here</p>}
+                tooltipEnterDelay={200}
+                tooltipExitDelay={100}
             />
             <CustomButton
                 label="Save Changes"
